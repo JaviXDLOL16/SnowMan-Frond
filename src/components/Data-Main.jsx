@@ -2,21 +2,21 @@ import React from 'react'
 import '../styles/Footer.css'
 
 
-function Data() {
+function Data({id,img,freezer,content}) {
     return (
         <tr>
-        <th scope="row">1</th>
+        <th scope="row">{id}</th>
         <td><img
-          src="https://th.bing.com/th/id/OIP.H-3_NfItsxbqn71nB7J05wHaHy?pid=ImgDet&rs=1"
+          src={img}
           height="90"
           loading="lazy"
         /></td>
-        <td>Exhibition</td>
-        <td>Drinks</td>
+        <td>{freezer}</td>
+        <td>{content}</td>
         <td>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1" disabled checked/>
-            <label class="custom-control-label" for="customSwitch1"></label>
+            <input type="checkbox" class="custom-control-input" id={id} />
+            <label class="custom-control-label" for={id}></label>
           </div>
         </td>
       </tr>   

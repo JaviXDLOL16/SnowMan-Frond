@@ -1,12 +1,27 @@
 import React from 'react'
 import '../styles/Main.css'
+import { useState, useEffect, Component } from 'react'
+import Data from '../components/Data-Main'
 
 
 function Main() {
-  return (
 
-    <div className='container-main'>
-      <div className='container-table'>
+  const [freezers, setFreezers] = useState([]);
+
+
+  useEffect(() => {
+    fetch('192.168.205.251:3000/fridge/listar')
+      .then(response => {console.log(response), response.json()})
+      .then(data => setFreezers(data.data))
+      .catch(error => console.error(error));
+  }, [freezers]);
+  
+
+
+
+  return (
+    <div className="container-main">
+      <div className="container-table">
         <table class="table align-middle">
           <thead>
             <tr>
@@ -19,50 +34,69 @@ function Main() {
           </thead>
           <tbody>
 
-            <tr>
-              <th scope="row">2</th>
-              <td></td>
-              <td>Store</td>
-              <td>Popsicles</td>
-              <td>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="customSwitch2" />
-                  <label class="custom-control-label" for="customSwitch2"></label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>
-              </td>
-              <td>Low temperature</td>
-              <td>Frozen</td>
-              <td>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="customSwitch3" />
-                  <label class="custom-control-label" for="customSwitch3"></label>
-                </div>
-              </td>
-            </tr>
+            {freezers.map(freezer=> {
+              return(
+                   <Data
+                img={freezer.img}
+                freezer={freezer.freezer}
+                content={freezer.content}
+                id={freezer.id}
+              />          
+              )
+            })}
+
           </tbody>
         </table>
       </div>
 
-      <div className='container-form'>
-        <form className='container-text'>
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Select the image</label>
-          <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option style={{ textAlign: "center" }} selected>Choose...</option>
+      <div className="container-form">
+        <form className="container-text">
+          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
+            Select the image
+          </label>
+          <input
+            style={{ textAlign: "center" }}
+            type="url"
+            class="form-control"
+            id="exampleInputEmail"
+            placeholder="Url"
+          />
+
+          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
+            Select the freezer
+          </label>
+          <select
+            class="custom-select my-1 mr-sm-2"
+            id="inlineFormCustomSelectPref"
+          >
+            <option style={{ textAlign: "center" }} selected>
+              Choose...
+            </option>
           </select>
 
-          <button className='button-style' type="submit" class="btn btn-primary my-1">Send</button>
+          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
+            Select the content
+          </label>
+          <select
+            class="custom-select my-1 mr-sm-2"
+            id="inlineFormCustomSelectPref"
+          >
+            <option style={{ textAlign: "center" }} selected>
+              Choose...
+            </option>
+          </select>
+
+          <button
+            className="button-style"
+            type="submit"
+            class="btn btn-primary my-1"
+          >
+            Send
+          </button>
         </form>
       </div>
     </div>
-
-
-
-  )
+  );
 }
 
 export default Main;

@@ -30,8 +30,8 @@ background-color: whitesmoke;
 margin: auto;
 width: 80%;
 display: flex;
-margin-bottom: 17%;
-margin-top: 15%;
+margin-bottom: 20%;
+margin-top: 13%;
 }
 
 .container-text{
@@ -44,3 +44,6 @@ border-color: gray;
 color: white;
 }
 
+.input-style{
+width: 50%;
+}
