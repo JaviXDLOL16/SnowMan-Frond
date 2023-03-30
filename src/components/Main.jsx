@@ -10,12 +10,11 @@ function Main() {
 
 
   useEffect(() => {
-    fetch('192.168.205.251:3000/fridge/listar')
-      .then(response => {console.log(response), response.json()})
-      .then(data => setFreezers(data.data))
-      .catch(error => console.error(error));
-  }, [freezers]);
-  
+    fetch('http://localhost:3000/fridge/listar')
+      .then((response) => response.json())
+      .then((data) => setFreezers(data));
+  }, []);
+
 
 
 
@@ -37,10 +36,11 @@ function Main() {
             {freezers.map(freezer=> {
               return(
                    <Data
-                img={freezer.img}
+                img={freezer.image}
                 freezer={freezer.freezer}
                 content={freezer.content}
                 id={freezer.id}
+                status={freezer.status}
               />          
               )
             })}
@@ -51,16 +51,6 @@ function Main() {
 
       <div className="container-form">
         <form className="container-text">
-          <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
-            Select the image
-          </label>
-          <input
-            style={{ textAlign: "center" }}
-            type="url"
-            class="form-control"
-            id="exampleInputEmail"
-            placeholder="Url"
-          />
 
           <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
             Select the freezer
@@ -72,6 +62,11 @@ function Main() {
             <option style={{ textAlign: "center" }} selected>
               Choose...
             </option>
+            <option>Exhibition</option>
+            <option>Store</option>
+            <option>Low temperature</option>
+            <option>Vertical</option>
+            <option>Horizontal </option>
           </select>
 
           <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
@@ -84,6 +79,10 @@ function Main() {
             <option style={{ textAlign: "center" }} selected>
               Choose...
             </option>
+            <option>Ice cream</option>
+            <option>Popsicles</option>
+            <option>Milkshakes</option>
+            <option>Sundaes</option>
           </select>
 
           <button

@@ -1,17 +1,21 @@
 import React from "react";
 import '../styles/App.css'
-import Frezeer from '../pages/Freezers'
-import {
-  BrowserRouter as Router,
-  Route
-} from "react-router-dom";
+import Freezer from '../pages/Freezers';
+import Login from "../pages/Login";
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
 
 
 function App() {
+  return (
+ 
+    <BrowserRouter>
+<Routes>
+ <Route path="/" element={<Login />} />
+ <Route path="/Freezer" element={<Freezer />} />
+</Routes>
+</BrowserRouter> 
 
-    return (
-    <Frezeer></Frezeer>
-    );
+  );
 }
 
 export default App;
