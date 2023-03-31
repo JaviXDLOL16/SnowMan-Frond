@@ -4,3 +4,8 @@ margin: auto;
 margin-top: 10%;
 margin-bottom: 10%;
 }
+
+.container{
+    min-height: 88vh;
+    padding-top:100px ;
+}

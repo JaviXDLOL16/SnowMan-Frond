@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
 <Routes>
  <Route path="/" element={<Login />} />
- <Route path="/Freezer" element={<Freezer />} />
+ <Route path="/Control-Panel" element={<Freezer />} />
 </Routes>
 </BrowserRouter> 
 
